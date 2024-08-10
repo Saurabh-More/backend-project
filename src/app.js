@@ -10,16 +10,16 @@ app.use(cors({
 }))
 
 
-// To get data in JSON format
-app.use(express.json({limit:"16kb"}))
+// Middlewares
+app.use(express.json({limit:"16kb"}))               // To get data in JSON format
+app.use(express.urlencoded({extended:true,limit:"16kb"}))  // To get data from URL
+app.use(express.static("public"))                   // Any type  data is store in the public folder is required
+app.use(cookieParser())                             // Use to access the user cookies ans set it 
 
-// To get data from URL
-app.use(express.urlencoded({extended:true,limit:"16kb"}))
+//routes
+import userRouter from './routes/user.routes.js'
+//routes declaration 
+app.use("/api/v1/users",userRouter)
 
-// Any type  data is store in the public folder is required
-app.use(express.static("public"))
 
-// Use to access the user cookies ans set it 
-app.use(cookieParser())
-
-export default app
+export { app }
