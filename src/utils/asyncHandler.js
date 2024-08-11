@@ -8,7 +8,7 @@ export { asyncHandler }
 
 
 
-/*
+
 const asynHandler= (fu) => async (req,res,next) => {
     try{
         await fu(req,res,next)
@@ -20,4 +20,3 @@ const asynHandler= (fu) => async (req,res,next) => {
         })
     }
 }
-*/

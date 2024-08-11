@@ -19,7 +19,9 @@ const registerUser=asyncHandler(async (req,res)=>{
 
     // get user details from fronted
     const {fullName,email,username,password}=req.body;
-    console.log("email : ",email);
+    // console.log("req.body : ");
+    // console.log(req.body);
+    
 
     // Validation - not empty
     if (!fullName || !email || !username || !password) 
@@ -34,14 +36,23 @@ const registerUser=asyncHandler(async (req,res)=>{
     {
         throw new ApiError(409,"User with this username or email already exists");
     }
-
+    
+    
     // check for images , check for avatar
-    const avatarLocalPath=req.files?.avatar[0]?.path;
-    const coverImageLocalPath = req.files?.coverImage[0]?.path;
+    
+    const avatarLocalPath = req.files?.avatar[0]?.path;
+    let coverImageLocalPath;
+    if(req.files?.coverImage)
+    {
+        coverImageLocalPath = req.files?.coverImage[0]?.path;
+    }
+
     if(!avatarLocalPath)
     {
         throw new ApiError(400,"Avatar file is required");
     }
+    // console.log("req.files : ");
+    // console.log(req.files);
 
     // upload them to cloudinary, avatar
     const avatar = await uploadOnCloudinary(avatarLocalPath);
