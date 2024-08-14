@@ -8,6 +8,8 @@ export { asyncHandler }
 
 
 
+/*
+One of the methos is used 
 
 const asynHandler= (fu) => async (req,res,next) => {
     try{
@@ -20,3 +22,4 @@ const asynHandler= (fu) => async (req,res,next) => {
         })
     }
 }
+    */
