@@ -58,7 +58,7 @@ const registerUser=asyncHandler(async (req,res)=>{
         throw new ApiError(409,"User with this username or email already exists");
     }
     
-    
+
     // check for images , check for avatar
     
     const avatarLocalPath = req.files?.avatar[0]?.path;
@@ -164,7 +164,7 @@ const loginUser = asyncHandler(async (req,res) =>{
         httpOnly : true,
         secure : true
     }
-
+    
     return res
     .status(200)
     .cookie("accessToken",accessToken,options)
@@ -183,7 +183,7 @@ const loginUser = asyncHandler(async (req,res) =>{
 
 })
 
-const logoutUser = asyncHandler(async (res,req) =>{
+const logoutUser = asyncHandler(async (req,res) =>{
     
     // now to update the refresh token 
     await User.findByIdAndUpdate(req.user._id,
